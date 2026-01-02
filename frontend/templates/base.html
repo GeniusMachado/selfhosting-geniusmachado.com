@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Genius Machado | Full Stack Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            slate: { 850: '#151e2e', 900: '#0f172a' },
+            brand: { DEFAULT: '#3B82F6', dark: '#1D4ED8' }
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style> body { font-family: 'Inter', sans-serif; background: #0F172A; color: #F8FAFC; } </style>
+</head>
+<body class="flex flex-col min-h-screen">
+  <header class="fixed w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/" class="text-xl font-bold tracking-tight">Genius<span class="text-blue-500">Machado</span></a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-white transition">About</a>
+        <a href="#skills" class="hover:text-white transition">Stack</a>
+        <a href="#experience" class="hover:text-white transition">Experience</a>
+        <a href="#contact" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition shadow-lg shadow-blue-500/20">Hire Me</a>
+      </div>
+      <div class="flex items-center gap-4">
+          <a href="https://x.com/" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.youtube.com/@GeniusMachado" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/geniusmachado/" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.snapchat.com/add/geniusmachado?share_id=clvFLRAE1h0&locale=en-US" class="text-gray-400 hover:text-white transition"><i class="fab fa-snapchat"></i></a>
+      </div>
+    </div>
+  </header>
+  <main class="flex-grow pt-0">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-slate-500 text-sm">
+    <div class="flex justify-center gap-6 mb-4 text-xl">
+        <a href="https://x.com/" class="hover:text-white transition"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.youtube.com/@GeniusMachado" class="hover:text-white transition"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/geniusmachado/" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.snapchat.com/add/geniusmachado?share_id=clvFLRAE1h0&locale=en-US" class="hover:text-white transition"><i class="fab fa-snapchat"></i></a>
+    </div>
+    <p>&copy; 2026 Genius Machado. Built with Python, Docker, & Cloudflare.</p>
+  </footer>
+</body>
+</html>

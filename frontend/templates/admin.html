@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto px-6 py-24">
+  <h1 class="text-3xl font-bold text-white mb-8">Admin Dashboard</h1>
+  
+  <!-- Stats -->
+  <div class="grid md:grid-cols-3 gap-6 mb-12">
+    <div class="p-6 bg-slate-800 rounded-xl border border-slate-700">
+      <div class="text-slate-400 text-sm">Live Viewers</div>
+      <div class="text-3xl font-bold text-blue-400">{{ viewer_count }}</div>
+    </div>
+    <div class="p-6 bg-slate-800 rounded-xl border border-slate-700">
+      <div class="text-slate-400 text-sm">Total Messages</div>
+      <div class="text-3xl font-bold text-emerald-400">{{ messages|length }}</div>
+    </div>
+  </div>
+
+  <!-- Messages Table -->
+  <div class="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden">
+    <table class="w-full text-left text-sm text-slate-400">
+      <thead class="bg-slate-950 text-slate-200 uppercase font-bold text-xs">
+        <tr>
+          <th class="px-6 py-4">Date</th>
+          <th class="px-6 py-4">Name</th>
+          <th class="px-6 py-4">Email</th>
+          <th class="px-6 py-4">Message</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-800">
+        {% for msg in messages %}
+        <tr class="hover:bg-slate-800/50">
+          <td class="px-6 py-4 whitespace-nowrap">{{ msg.date }}</td>
+          <td class="px-6 py-4 font-bold text-white">{{ msg.name }}</td>
+          <td class="px-6 py-4 text-blue-400">{{ msg.email }}</td>
+          <td class="px-6 py-4">{{ msg.message }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4" class="px-6 py-8 text-center">No messages yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

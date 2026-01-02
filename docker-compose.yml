@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: portfolio
+      MYSQL_USER: genius
+      MYSQL_PASSWORD: geniuspass
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  api-gateway:
+    build: ./api-gateway
+    restart: on-failure
+    environment:
+      GATEWAY_HOST: api-gateway
+      ENGINE_URL: http://portfolio-engine:8002
+    volumes:
+      - ./api-gateway:/app
+      - ./frontend:/app/frontend:ro
+    depends_on:
+      - portfolio-engine
+    ports:
+      - "8000:8000"
+
+  portfolio-engine:
+    build: ./portfolio-engine
+    volumes:
+      - ./portfolio-engine:/app
+    environment:
+      DATABASE_URL: mysql+aiomysql://genius:geniuspass@db:3306/portfolio
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8002:8002"
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    restart: always
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=Paste_DOCKER_TUNNEL_TOKEN_FOR_CLOURFLARE_HERE
+    depends_on:
+      - api-gateway
+
+volumes:
+  db_data:
